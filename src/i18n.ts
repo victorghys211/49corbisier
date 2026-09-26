@@ -73,7 +73,7 @@ const resources = {
         },
         values: {
           adventure: "Aventure en plein air",
-          adventureDesc: "Jeux dans les bois, sjorren, constructions et nuits sous la tente.",
+          adventureDesc: "Jeux dans les bois, brelages, constructions et nuits sous la tente.",
           friendship: "Amis pour la vie",
           friendshipDesc: "Des amitiés solides et des souvenirs inoubliables partagés autour du feu.",
           spirit: "Esprit scout",
@@ -172,7 +172,7 @@ const resources = {
       extras: {
         badge: "Vie de l'Unité",
         title: "Vie de l'Unité & Détente",
-        subtitle: "Plongez au cœur de l'ambiance scoute : le vidéoclip du grand camp, notre article mystère conçu par les chefs, le grand jeu du mois et les espaces d'anciens et de fête !",
+        subtitle: "Plongez au cœur de l'ambiance scoute : notre article mystère conçu par les chefs, le grand jeu du mois et les espaces d'anciens et de fête !",
         videoTitle: "Le Vidéoclip du Grand Camp",
         videoDesc: "Constructions sur pilotis, veillées au coin du feu et franches rigolades : revivez les meilleurs moments de nos camps en vidéo !",
         mysteryTitle: "Article Mystère de la Boutique",
@@ -435,7 +435,7 @@ const resources = {
       extras: {
         badge: "Vie de l'Unité",
         title: "Vie de l'Unité & Ontspanning",
-        subtitle: "Beleef de scoutsgeest: de kampvideo, ons mystery item ontworpen door de chefs, het grote Jeu du Mois en de pagina's voor oud-leden en feest!",
+        subtitle: "Beleef de scoutsgeest: ons mystery item ontworpen door de chefs, het grote Jeu du Mois en de pagina's voor oud-leden en feest!",
         videoTitle: "De Kampvideoclip",
         videoDesc: "Sjorconstructies, gezang rond het kampvuur en hechte vriendschap: herbeleef de mooiste momenten van onze kampen in video!",
         mysteryTitle: "Mystery Item van de Shop",
@@ -698,7 +698,7 @@ const resources = {
       extras: {
         badge: "Vie de l'Unité",
         title: "Vie de l'Unité & Downtime",
-        subtitle: "Immerse in true scout culture: our summer camp video, mystery shop item crafted by our chefs, the Game of the Month, and sections for alumni and jubilee celebrations!",
+        subtitle: "Immerse in true scout culture: our mystery shop item crafted by our chefs, the Game of the Month, and spaces for alumni and jubilee celebrations!",
         videoTitle: "The Summer Camp Video",
         videoDesc: "Timber structures, campfires, and sincere laughter: relive the finest moments of our camps on video!",
         mysteryTitle: "Scout Shop Mystery Item",

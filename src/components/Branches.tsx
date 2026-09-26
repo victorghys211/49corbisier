@@ -57,7 +57,7 @@ export default function Branches() {
     "MASTER": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
     "KINKAJOU": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=200&q=80",
     "CALOPSITTE": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80",
-    "JACALA": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
+    "JAGUARUNDI": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
     "JACARA": "https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=200&q=80",
     "KOALA": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
     "Cheveche": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
@@ -146,11 +146,11 @@ export default function Branches() {
       avatar: "/chefs/calopsitte.jpg"
     },
     {
-      totem: "JACALA",
+      totem: "JAGUARUNDI",
       name: "Thibeaud Depeser",
       role: "Chef",
       phone: "+32 491 87 16 82",
-      avatar: "/chefs/jacala.jpg"
+      avatar: "/chefs/jaguarundi.jpg"
     },
     {
       totem: "JACARA",

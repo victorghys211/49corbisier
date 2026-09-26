@@ -613,162 +613,225 @@ export default function Extras() {
 
         </div>
 
-        {/* Camp Video Clip & Mystery Item (Without revealing the rugby polo!) */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Camp Video Clip (Kept as requested) */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7 card-scout p-6 sm:p-8 flex flex-col justify-between space-y-5"
-          >
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-scout-yellow">
-                Souvenirs sous tente
-              </span>
-              <h3 className="text-2xl font-display font-bold text-scout-yellow">
-                {t('extras.videoTitle')}
-              </h3>
-              <p className="text-xs sm:text-sm text-cream/80 leading-relaxed font-normal">
-                {t('extras.videoDesc')}
-              </p>
-            </div>
+        {/* Camp Video Clip (Set SHOW_CAMP_VIDEO to true to re-enable in the future) OR Responsive Full Mystery Card */}
+        {(() => {
+          // TOGGLE: Set to true whenever a camp video clip is ready to be published!
+          const SHOW_CAMP_VIDEO = false;
 
-            {/* Video Player Box */}
-            <div className="relative rounded-2xl overflow-hidden border border-scout-yellow/30 bg-black aspect-video group">
-              {!isPlayingVideo ? (
-                <>
-                  <img 
-                    src={troupeCampImg} 
-                    alt="Camp Scout 49 Corbisier" 
-                    className="w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <button
-                      onClick={() => setIsPlayingVideo(true)}
-                      className="w-16 h-16 rounded-full bg-scout-yellow text-scout-blue flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                      aria-label="Lire la vidéo du camp"
-                    >
-                      <Play size={28} className="translate-x-0.5 fill-current" />
-                    </button>
-                  </div>
-                  <div className="absolute bottom-3 left-4 right-4 text-center">
-                    <span className="text-xs text-cream/90 bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm">
-                      Cliquez pour démarrer la vidéo du grand camp
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-                  title="Camp Scout 49 Corbisier"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              )}
-            </div>
-          </motion.div>
-
-          {/* Mystery Item Card (Under construction - DO NOT REVEAL!) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-5 card-scout p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-scout-green-card border-2 border-dashed border-scout-yellow/40"
-          >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-scout-blue/80 border border-scout-yellow/30 flex items-center justify-center text-scout-yellow">
-                  <Gift size={24} />
-                </div>
-                <span className="text-[11px] font-mono text-scout-yellow bg-scout-blue/80 border border-scout-yellow/30 px-3 py-1 rounded-full">
-                  {t('extras.mysteryStatus')}
-                </span>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-display font-bold text-scout-yellow">
-                  {t('extras.mysteryTitle')}
-                </h3>
-                <p className="text-xs sm:text-sm text-cream/85 mt-2 leading-relaxed font-normal">
-                  {t('extras.mysteryDesc')}
-                </p>
-              </div>
-
-              {/* Gleaming animated mystery teaser */}
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-scout-blue/90 via-scout-green-card to-scout-blue/80 border border-scout-yellow/40 p-5 sm:p-6 shadow-inner group">
-                {/* Pulsing golden aura in background */}
-                <div className="absolute -top-12 -left-12 w-48 h-48 bg-scout-yellow/20 rounded-full blur-2xl animate-pulse pointer-events-none" />
-                <div className="absolute -bottom-10 -right-10 w-44 h-44 bg-scout-yellow/15 rounded-full blur-2xl animate-pulse pointer-events-none" />
-
-                {/* Sweeping diagonal golden light reflection */}
+          if (SHOW_CAMP_VIDEO) {
+            return (
+              <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+                {/* Camp Video Clip */}
                 <motion.div
-                  className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-scout-yellow/25 to-transparent skew-x-12 pointer-events-none"
-                  animate={{
-                    x: ["-100%", "260%"]
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 3.2,
-                    ease: "easeInOut",
-                    repeatDelay: 0.8
-                  }}
-                />
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="lg:col-span-7 card-scout p-6 sm:p-8 flex flex-col justify-between space-y-5"
+                >
+                  <div className="space-y-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-scout-yellow">
+                      Souvenirs sous tente
+                    </span>
+                    <h3 className="text-2xl font-display font-bold text-scout-yellow">
+                      {t('extras.videoTitle')}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-cream/80 leading-relaxed font-normal">
+                      {t('extras.videoDesc')}
+                    </p>
+                  </div>
 
-                <div className="relative z-10 flex flex-col items-center text-center space-y-3.5">
-                  {/* Glowing central emblem with pulsing aura */}
-                  <div className="relative my-1">
-                    {/* Expanding halo */}
-                    <motion.div 
-                      className="absolute inset-0 rounded-full bg-scout-yellow/30 blur-md"
-                      animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0.9, 0.5] }}
-                      transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                    />
+                  {/* Video Player Box */}
+                  <div className="relative rounded-2xl overflow-hidden border border-scout-yellow/30 bg-black aspect-video group">
+                    {!isPlayingVideo ? (
+                      <>
+                        <img 
+                          src={troupeCampImg} 
+                          alt="Camp Scout 49 Corbisier" 
+                          className="w-full h-full object-cover brightness-75 group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <button
+                            onClick={() => setIsPlayingVideo(true)}
+                            className="w-16 h-16 rounded-full bg-scout-yellow text-scout-blue flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                            aria-label="Lire la vidéo du camp"
+                          >
+                            <Play size={28} className="translate-x-0.5 fill-current" />
+                          </button>
+                        </div>
+                        <div className="absolute bottom-3 left-4 right-4 text-center">
+                          <span className="text-xs text-cream/90 bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm">
+                            Cliquez pour démarrer la vidéo du grand camp
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <iframe
+                        className="w-full h-full"
+                        src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+                        title="Camp Scout 49 Corbisier"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )}
+                  </div>
+                </motion.div>
 
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-scout-blue border-2 border-scout-yellow flex items-center justify-center text-scout-yellow shadow-2xl group-hover:scale-105 transition-transform duration-300">
-                      <Lock size={32} className="drop-shadow-[0_0_12px_rgba(245,184,46,0.8)]" />
+                {/* Mystery Item Card in 12-col side-by-side mode */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="lg:col-span-5 card-scout p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-scout-green-card border-2 border-dashed border-scout-yellow/40"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="w-12 h-12 rounded-2xl bg-scout-blue/80 border border-scout-yellow/30 flex items-center justify-center text-scout-yellow">
+                        <Gift size={24} />
+                      </div>
+                      <span className="text-[11px] font-mono text-scout-yellow bg-scout-blue/80 border border-scout-yellow/30 px-3 py-1 rounded-full">
+                        {t('extras.mysteryStatus')}
+                      </span>
+                    </div>
 
-                      {/* Twinkling star 1 */}
-                      <motion.div
-                        className="absolute -top-2 -right-2 text-scout-yellow"
-                        animate={{ rotate: [0, 90, 180, 270, 360], scale: [0.8, 1.2, 0.8] }}
-                        transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                      >
-                        <Sparkles size={16} />
-                      </motion.div>
+                    <div>
+                      <h3 className="text-2xl font-display font-bold text-scout-yellow">
+                        {t('extras.mysteryTitle')}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-cream/85 mt-2 leading-relaxed font-normal">
+                        {t('extras.mysteryDesc')}
+                      </p>
+                    </div>
 
-                      {/* Twinkling star 2 */}
-                      <motion.div
-                        className="absolute -bottom-1 -left-2 text-scout-yellow/80"
-                        animate={{ scale: [1, 0.6, 1], opacity: [0.6, 1, 0.6] }}
-                        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                      >
-                        <Sparkles size={14} />
-                      </motion.div>
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-scout-blue/90 via-scout-green-card to-scout-blue/80 border border-scout-yellow/40 p-5 sm:p-6 shadow-inner group">
+                      <div className="relative z-10 flex flex-col items-center text-center space-y-3.5">
+                        <div className="relative my-1">
+                          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-scout-blue border-2 border-scout-yellow flex items-center justify-center text-scout-yellow shadow-2xl">
+                            <Lock size={32} className="drop-shadow-[0_0_12px_rgba(245,184,46,0.8)]" />
+                          </div>
+                        </div>
+                        <p className="text-xs text-cream/90 font-serif italic max-w-xs leading-relaxed">
+                          « Une silhouette inédite prend forme dans le plus grand mystère... Préparez-vous à une belle surprise ! »
+                        </p>
+                      </div>
                     </div>
                   </div>
+                </motion.div>
+              </div>
+            );
+          }
 
-                  {/* Secret Teaser Label */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-scout-blue/90 border border-scout-yellow/40 text-scout-yellow text-[11px] font-mono font-bold tracking-wider shadow">
-                    <span className="w-2 h-2 rounded-full bg-scout-yellow animate-ping" />
-                    <span>Création Secrète • Édition Limitée</span>
+          // Default view: Perfectly responsive Mystery Item Card for Mobile, Tablet, Laptop, and Desktop
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="card-scout p-6 sm:p-8 md:p-10 bg-scout-green-card border-2 border-dashed border-scout-yellow/40 shadow-2xl space-y-6"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-center">
+                
+                {/* Left Column: Mystery Title & Description */}
+                <div className="md:col-span-7 space-y-4 text-left">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-scout-blue/80 border border-scout-yellow/30 flex items-center justify-center text-scout-yellow shrink-0">
+                      <Gift size={24} />
+                    </div>
+                    <span className="text-[11px] font-mono text-scout-yellow bg-scout-blue/80 border border-scout-yellow/30 px-3 py-1 rounded-full">
+                      {t('extras.mysteryStatus')}
+                    </span>
                   </div>
 
-                  <p className="text-xs text-cream/90 font-serif italic max-w-xs leading-relaxed">
-                    « Une silhouette inédite prend forme dans le plus grand mystère... Préparez-vous à une belle surprise ! »
-                  </p>
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold text-scout-yellow">
+                      {t('extras.mysteryTitle')}
+                    </h3>
+                    <p className="text-xs sm:text-sm md:text-base text-cream/90 mt-2.5 leading-relaxed font-normal">
+                      {t('extras.mysteryDesc')}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 flex flex-wrap items-center gap-3">
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-scout-blue/90 border border-scout-yellow/40 text-scout-yellow text-xs font-mono font-bold tracking-wider shadow">
+                      <span className="w-2 h-2 rounded-full bg-scout-yellow animate-ping" />
+                      <span>Création Secrète • Édition Limitée</span>
+                    </div>
+                    <span className="text-xs text-scout-yellow/80 font-mono">
+                      ★ Restez connectés pour le lancement officiel ★
+                    </span>
+                  </div>
                 </div>
+
+                {/* Right Column: Gleaming animated mystery teaser */}
+                <div className="md:col-span-5 w-full">
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-scout-blue/90 via-scout-green-card to-scout-blue/80 border border-scout-yellow/40 p-5 sm:p-7 shadow-inner group">
+                    {/* Pulsing golden aura in background */}
+                    <div className="absolute -top-12 -left-12 w-48 h-48 bg-scout-yellow/20 rounded-full blur-2xl animate-pulse pointer-events-none" />
+                    <div className="absolute -bottom-10 -right-10 w-44 h-44 bg-scout-yellow/15 rounded-full blur-2xl animate-pulse pointer-events-none" />
+
+                    {/* Sweeping diagonal golden light reflection */}
+                    <motion.div
+                      className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-scout-yellow/25 to-transparent skew-x-12 pointer-events-none"
+                      animate={{
+                        x: ["-100%", "260%"]
+                      }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 3.2,
+                        ease: "easeInOut",
+                        repeatDelay: 0.8
+                      }}
+                    />
+
+                    <div className="relative z-10 flex flex-col items-center text-center space-y-3.5">
+                      {/* Glowing central emblem with pulsing aura */}
+                      <div className="relative my-1">
+                        {/* Expanding halo */}
+                        <motion.div 
+                          className="absolute inset-0 rounded-full bg-scout-yellow/30 blur-md"
+                          animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0.9, 0.5] }}
+                          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+                        />
+
+                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-scout-blue border-2 border-scout-yellow flex items-center justify-center text-scout-yellow shadow-2xl group-hover:scale-105 transition-transform duration-300">
+                          <Lock size={32} className="drop-shadow-[0_0_12px_rgba(245,184,46,0.8)]" />
+
+                          {/* Twinkling star 1 */}
+                          <motion.div
+                            className="absolute -top-2 -right-2 text-scout-yellow"
+                            animate={{ rotate: [0, 90, 180, 270, 360], scale: [0.8, 1.2, 0.8] }}
+                            transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                          >
+                            <Sparkles size={16} />
+                          </motion.div>
+
+                          {/* Twinkling star 2 */}
+                          <motion.div
+                            className="absolute -bottom-1 -left-2 text-scout-yellow/80"
+                            animate={{ scale: [1, 0.6, 1], opacity: [0.6, 1, 0.6] }}
+                            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                          >
+                            <Sparkles size={14} />
+                          </motion.div>
+                        </div>
+                      </div>
+
+                      {/* Secret Teaser Label */}
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-scout-blue/90 border border-scout-yellow/40 text-scout-yellow text-[11px] font-mono font-bold tracking-wider shadow">
+                        <span className="w-2 h-2 rounded-full bg-scout-yellow animate-ping" />
+                        <span>Mystère Total</span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-cream/90 font-serif italic max-w-xs leading-relaxed">
+                        « Une silhouette inédite prend forme dans le plus grand mystère... Préparez-vous à une belle surprise ! »
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>
-
-            <div className="pt-2 text-center text-xs text-scout-yellow/80 font-mono">
-              ★ Restez connectés pour le lancement officiel ★
-            </div>
-          </motion.div>
-
-        </div>
+            </motion.div>
+          );
+        })()}
 
         {/* French Scout Crossword Puzzle: JEU DU MOIS */}
         <motion.div
