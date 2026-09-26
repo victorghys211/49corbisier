@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "Photo": {
+      "title": "Scout Photo",
+      "description": "A photo uploaded to the scout gallery",
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the photo"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the photo"
+        },
+        "tag": {
+          "type": "string",
+          "description": "A tag or category for the photo"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the photo was uploaded"
+        },
+        "authorId": {
+          "type": "string",
+          "description": "The UID of the user who uploaded the photo"
+        }
+      },
+      "required": ["url", "title", "createdAt", "authorId"]
+    }
+  },
+  "firestore": {
+    "photos": {
+      "schema": "Photo",
+      "description": "A collection of photos from the scout unit"
+    }
+  }
+}

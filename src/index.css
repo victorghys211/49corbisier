@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Cinzel", serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-scout-blue: #0b1d4a; /* Scottish Tartan Navy Blue */
+  --color-scout-blue-light: #162c6d;
+  --color-scout-red: #8f1313;  /* Authentic Corbisier Tartan Scarf Crimson/Ruby Red */
+  --color-scout-red-light: #ab1d1d;
+  --color-scout-red-hover: #b52222;
+  --color-scout-green: #0d2314; /* Deep Tartan Forest Green */
+  --color-scout-green-card: #122b19;
+  --color-scout-yellow: #f5b82e; /* Scottish Gold / Yellow */
+  --color-scout-yellow-light: #fcd34d;
+  --color-accent: var(--color-scout-yellow);
+  --color-accent-dark: #d99b16;
+  --color-cream: #f6f3eb;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body {
+    @apply bg-scout-green text-cream font-sans antialiased selection:bg-scout-yellow selection:text-scout-blue;
+    background-color: #0d2314;
+  }
+  
+  img,
+  video,
+  iframe,
+  embed,
+  object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe {
+    height: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  /* Clean Scout Card */
+  .card-scout {
+    @apply bg-scout-green-card/95 border border-scout-yellow/20 rounded-2xl p-6 transition-all duration-300 shadow-xl;
+  }
+  
+  /* Simpler card without rainbow bar */
+  .card-tartan {
+    @apply relative bg-scout-green-card/95 border border-scout-yellow/25 rounded-2xl p-6 transition-all duration-300 shadow-xl overflow-hidden;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 bg-scout-yellow text-scout-blue font-bold px-6 py-3 rounded-xl uppercase tracking-widest text-xs hover:bg-scout-yellow-light hover:shadow-lg hover:shadow-scout-yellow/20 transition-all active:scale-95;
+  }
+
+  .btn-tartan-red {
+    @apply inline-flex items-center justify-center gap-2 bg-scout-red text-white font-bold px-6 py-3 rounded-xl uppercase tracking-widest text-xs hover:bg-scout-red-hover hover:shadow-lg hover:shadow-scout-red/30 transition-all active:scale-95 border border-scout-red/30;
+  }
+
+  .btn-tartan-blue {
+    @apply inline-flex items-center justify-center gap-2 bg-scout-blue text-white font-bold px-6 py-3 rounded-xl uppercase tracking-widest text-xs hover:bg-scout-blue-light hover:shadow-lg hover:shadow-scout-blue/40 transition-all active:scale-95 border border-white/10;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-scout-yellow/40 text-scout-yellow px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-scout-yellow/10 transition-all active:scale-95;
+  }
+
+  .tartan-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] border border-scout-yellow/30 text-scout-yellow bg-scout-blue/60;
+  }
+}
+
+

@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Global Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isOwner(authorId) {
+      return isSignedIn() && request.auth.uid == authorId;
+    }
+
+    // --- Validation Blueprints ---
+    function isValidPhoto(data) {
+      return data.keys().hasAll(['url', 'title', 'tag', 'createdAt', 'authorId']) &&
+             data.keys().size() == 5 &&
+             data.url is string && data.url.size() < 1024 &&
+             data.title is string && data.title.size() < 200 &&
+             data.tag is string && data.tag.size() < 50 &&
+             data.authorId == request.auth.uid;
+    }
+
+    // --- Collection Rules ---
+    match /photos/{photoId} {
+      allow get, list: if true; // Public view
+      
+      allow create: if isSignedIn() && 
+                      isValidId(photoId) && 
+                      isValidPhoto(incoming()) &&
+                      incoming().createdAt == request.time;
+
+      allow update: if isSignedIn() &&
+                      isValidId(photoId) &&
+                      isOwner(existing().authorId) &&
+                      incoming().authorId == existing().authorId &&
+                      incoming().createdAt == existing().createdAt &&
+                      incoming().diff(existing()).affectedKeys().hasOnly(['title', 'tag', 'url']) &&
+                      (incoming().url is string && incoming().url.size() < 1024) &&
+                      (incoming().title is string && incoming().title.size() < 200) &&
+                      (incoming().tag is string && incoming().tag.size() < 50);
+
+      allow delete: if isSignedIn() &&
+                      isValidId(photoId) &&
+                      isOwner(existing().authorId);
+    }
+  }
+}

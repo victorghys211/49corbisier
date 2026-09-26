@@ -1,0 +1,6 @@
+{
+  "name": "49 Corbisier",
+  "description": "Site officiel de 49 Corbisier (49 scouts) à Wilrijk (Anvers). Unité scoute francophone pour les jeunes de 5 à 18 ans : Meute, Troupe, Jeune Équipe. Réunions chaque dimanche.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
