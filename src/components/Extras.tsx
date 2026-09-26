@@ -776,7 +776,7 @@ export default function Extras() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-scout p-5 sm:p-8 bg-scout-green-card border-2 border-scout-yellow/30 max-w-6xl mx-auto shadow-2xl space-y-6"
+          className="card-scout p-3.5 sm:p-8 bg-scout-green-card border-2 border-scout-yellow/30 max-w-6xl mx-auto shadow-2xl space-y-6 overflow-hidden sm:overflow-visible"
         >
           {/* Top Bar with Badge, Title, and Live Chrono */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-scout-yellow/20 pb-5">
@@ -826,6 +826,14 @@ export default function Extras() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Warning recommendation for mobile/tablet */}
+          <div className="flex items-start sm:items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-scout-blue/90 border-2 border-scout-yellow/60 shadow-lg text-scout-yellow">
+            <span className="text-xl sm:text-2xl shrink-0 select-none">💡</span>
+            <p className="text-xs sm:text-sm text-cream/95 font-medium leading-relaxed">
+              Pour une meilleure expérience et pour voir la grille complète, nous vous conseillons de jouer sur un ordinateur ou une tablette.
+            </p>
           </div>
 
           {/* Anti-Cheat: Completed Banner OR Name Gate Card */}
@@ -964,15 +972,16 @@ export default function Extras() {
               )}
 
               {/* Mobile Scroll Hint */}
-              <div className="sm:hidden flex items-center justify-center gap-1.5 text-[11px] text-cream/75 font-mono text-center">
-                <span>↔ Glisse le doigt pour explorer toute la grille ↔</span>
+              <div className="sm:hidden flex items-center justify-center gap-2 p-2 rounded-xl bg-scout-blue/60 border border-scout-yellow/30 text-xs text-scout-yellow font-mono text-center">
+                <span className="animate-pulse">👈</span>
+                <span>Fais glisser la grille pour voir les 17 colonnes</span>
+                <span className="animate-pulse">👉</span>
               </div>
 
               {/* Scrollable Grid Container */}
-              <div className="w-full overflow-x-auto p-2 sm:p-3 rounded-2xl bg-scout-blue/70 border-2 border-scout-yellow/40 shadow-inner touch-pan-x">
+              <div className="w-full max-w-full overflow-x-auto overscroll-x-contain p-2.5 sm:p-4 rounded-2xl bg-scout-blue/70 border-2 border-scout-yellow/40 shadow-inner touch-pan-x">
                 <div 
-                  className="min-w-fit mx-auto grid gap-1 sm:gap-1.5 select-none"
-                  style={{ gridTemplateColumns: "repeat(17, minmax(0, 1fr))" }}
+                  className="w-max mx-auto grid gap-1 sm:gap-1.5 select-none grid-cols-[repeat(17,28px)] sm:grid-cols-[repeat(17,32px)] md:grid-cols-[repeat(17,34px)]"
                 >
                   {Array.from({ length: 18 }).map((_, r) => (
                     Array.from({ length: 17 }).map((_, c) => {
@@ -983,7 +992,7 @@ export default function Extras() {
                         return (
                           <div 
                             key={coord} 
-                            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 min-w-[24px] min-h-[24px] bg-scout-green/30 rounded-md border border-scout-green/40 opacity-20 pointer-events-none" 
+                            className="w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] md:w-[34px] md:h-[34px] shrink-0 bg-scout-green/30 rounded-md border border-scout-green/40 opacity-20 pointer-events-none" 
                           />
                         );
                       }
@@ -995,14 +1004,14 @@ export default function Extras() {
                       return (
                         <div 
                           key={coord} 
-                          className={`relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 min-w-[24px] min-h-[24px] rounded-md transition-all ${
-                            isSelected ? 'ring-2 ring-scout-yellow scale-105 z-20' :
+                          className={`relative w-[28px] h-[28px] sm:w-[32px] sm:h-[32px] md:w-[34px] md:h-[34px] shrink-0 rounded-md transition-all ${
+                            isSelected ? 'ring-2 ring-scout-yellow scale-105 z-20 shadow-md' :
                             isInActiveWord ? 'ring-1 ring-scout-yellow/60 z-10' :
                             ''
                           }`}
                         >
                           {cellData.num && (
-                            <span className="absolute top-0 left-0.5 text-[7px] sm:text-[8px] font-bold text-scout-yellow z-10 pointer-events-none leading-none">
+                            <span className="absolute top-0.5 left-0.5 text-[8px] sm:text-[9px] font-bold text-scout-yellow z-10 pointer-events-none leading-none">
                               {cellData.num}
                             </span>
                           )}
@@ -1020,7 +1029,7 @@ export default function Extras() {
                             onFocus={() => handleSelectCell(coord)}
                             onChange={(e) => handleCellChange(coord, e.target.value)}
                             onKeyDown={(e) => handleKeyDown(coord, e)}
-                            className={`w-full h-full text-center font-bold text-xs sm:text-sm md:text-base rounded-md focus:outline-none uppercase ${
+                            className={`w-full h-full min-w-0 min-h-0 p-0 m-0 text-center font-bold text-base rounded-md focus:outline-none uppercase appearance-none ${
                               isLocked ? 'cursor-not-allowed opacity-90' : 'cursor-pointer select-all'
                             } transition-colors ${
                               isSelected 

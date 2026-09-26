@@ -526,6 +526,10 @@ export default function Branches() {
                     {t('sections.meute.intro')}
                   </p>
 
+                  <p className="text-scout-yellow text-sm sm:text-base font-medium">
+                    {t('sections.meute.theme')}
+                  </p>
+
                   {/* Programme Document Open */}
                   <div className="p-4 sm:p-5 rounded-2xl bg-scout-green-card border-2 border-scout-yellow/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -725,6 +729,10 @@ export default function Branches() {
                   {/* Intro */}
                   <p className="text-cream/90 text-sm sm:text-base leading-relaxed font-normal">
                     {t('sections.troupe.intro')}
+                  </p>
+
+                  <p className="text-scout-yellow text-sm sm:text-base font-medium">
+                    {t('sections.troupe.theme')}
                   </p>
 
                   {/* Programme Document Open */}

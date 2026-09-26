@@ -33,20 +33,11 @@ interface PhotoItem {
   position?: string;
 }
 
-// Valid scout unit access codes (case-insensitive & space-insensitive)
-const VALID_ALBUM_CODES = [
-  "49UNEFAMILLE",
-  "UNEFAMILLE49",
-  "49CORBISIER",
-  "CORBISIER49",
-  "SCOUTS49",
-  "BEAUVAL",
-  "BEAUVAL49",
-  "WILRIJK1937"
-];
+// Only official scout unit access code
+const VALID_ALBUM_CODE = "49UNEFAMILLE";
 
-// Official Google Photos Shared Album link (can be customized by leaders or in localStorage)
-const DEFAULT_GOOGLE_PHOTOS_ALBUM_URL = "https://photos.google.com";
+// Official Google Photos Shared Album link
+const DEFAULT_GOOGLE_PHOTOS_ALBUM_URL = "https://photos.app.goo.gl/1LSpErXuzj2DR6SW6";
 
 export default function Photos() {
   const { t } = useTranslation();
@@ -60,7 +51,10 @@ export default function Photos() {
   // Dynamic Google Photos Album URL (persisted in localStorage or defaulted)
   const [albumUrl, setAlbumUrl] = useState<string>(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("corbisier_google_photos_url") || DEFAULT_GOOGLE_PHOTOS_ALBUM_URL;
+      const stored = localStorage.getItem("corbisier_google_photos_url");
+      if (stored && stored !== "https://photos.google.com") {
+        return stored;
+      }
     }
     return DEFAULT_GOOGLE_PHOTOS_ALBUM_URL;
   });
@@ -127,9 +121,20 @@ export default function Photos() {
     const cleanCode = accessCodeInput.trim().toUpperCase().replace(/[\s\-_]+/g, "");
     if (!cleanCode) return;
 
-    if (VALID_ALBUM_CODES.includes(cleanCode)) {
+    if (cleanCode === VALID_ALBUM_CODE) {
       setIsAlbumUnlocked(true);
       setCodeError("");
+      try {
+        const link = document.createElement("a");
+        link.href = albumUrl || DEFAULT_GOOGLE_PHOTOS_ALBUM_URL;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch {
+        // Fallback handled by the unlocked button
+      }
     } else {
       setCodeError("Code incorrect. Demandez-le ci-dessous aux chefs ou utilisez le code reçu aux réunions.");
     }
@@ -384,7 +389,8 @@ export default function Photos() {
                     rel="noopener noreferrer"
                     className="w-full btn-accent text-xs py-2.5 flex items-center justify-center gap-1.5 cursor-pointer shadow-xl text-scout-blue font-bold"
                   >
-                    <span>Accéder à Google Photos</span>
+                    <Unlock size={14} />
+                    <span>Ouvrir l'album Google Photos</span>
                     <ExternalLink size={13} />
                   </a>
 
